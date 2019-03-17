@@ -82,9 +82,6 @@ class Product {
   }
 
 
-
-
-
   initAccordion() {
     const thisProduct = this;
 
@@ -119,7 +116,6 @@ class Product {
       /* END: click event listener to trigger */
     });
   }
-}
 
 
   const app = {
