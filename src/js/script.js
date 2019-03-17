@@ -59,8 +59,8 @@ class Product {
     thisProduct.id = id;
     thisProduct.data = data;
 
-    thisProduct.initAccordion();
     thisProduct.renderInMenu();
+    thisProduct.initAccordion();
 
     console.log('thisProduct:', thisProduct);
   }
@@ -79,8 +79,11 @@ class Product {
 
     /* add element to menu */
     menuContainer.appendChild(thisProduct.element);
-
   }
+
+
+
+
 
   initAccordion() {
     const thisProduct = this;
@@ -104,7 +107,7 @@ class Product {
       for (let activeProduct of activeProducts) {
 
         /* START: if the active product isn't the element of thisProduct */
-        if(!thisProduct.hasOwnProperty(activeProduct)) {
+        if(!activeProduct === thisProduct.element) {
 
         /* remove class active for the active product */
         activeProduct.classList.remove('active');
@@ -114,8 +117,10 @@ class Product {
         /* END LOOP: for each active product */
       }
       /* END: click event listener to trigger */
-    }
+    });
+  }
 }
+
 
   const app = {
     initMenu: function() {
