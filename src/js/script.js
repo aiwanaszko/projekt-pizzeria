@@ -53,13 +53,69 @@
   };
 
 class Product {
-  constructor() {
+  constructor(id, data) {
     const thisProduct = this;
+
+    thisProduct.id = id;
+    thisProduct.data = data;
+
+    thisProduct.initAccordion();
+    thisProduct.renderInMenu();
 
     console.log('thisProduct:', thisProduct);
   }
-}
 
+  renderInMenu() {
+    const thisProduct = this;
+
+    /* generate HTML based on template */
+    const generatedHTML = templates.menuProduct(thisProduct.data);
+
+    /* create element using utils.createElementFromHTML */
+    thisProduct.element = utils.createDOMFromHTML(generatedHTML);
+
+    /* find menu container */
+    const menuContainer = document.querySelector(select.containerOf.menu);
+
+    /* add element to menu */
+    menuContainer.appendChild(thisProduct.element);
+
+  }
+
+  initAccordion() {
+    const thisProduct = this;
+
+    /* find the clickable trigger (the element that should react to clicking) */
+    const trigger = document.querySelector(select.menuProduct.clickable);
+
+    /* START: click event listener to trigger */
+    trigger.addEventListener('click', function(){
+
+      /* prevent default action for event */
+      event.preventDefault();
+
+      /* toggle active class on element of thisProduct */
+      thisProduct.element.classList.toggle('active');
+
+      /* find all active products */
+      const activeProducts = document.querySelectorAll('.active');
+
+      /* START LOOP: for each active product */
+      for (let activeProduct of activeProducts) {
+
+        /* START: if the active product isn't the element of thisProduct */
+        if(!thisProduct.hasOwnProperty(activeProduct)) {
+
+        /* remove class active for the active product */
+        activeProduct.classList.remove('active');
+
+        /* END: if the active product isn't the element of thisProduct */
+        }
+        /* END LOOP: for each active product */
+      }
+      /* END: click event listener to trigger */
+    }
+}
 
   const app = {
     initMenu: function() {
