@@ -116,7 +116,7 @@ class Product {
       /* END: click event listener to trigger */
     });
   }
-
+}
 
   const app = {
     initMenu: function() {
