@@ -60,7 +60,10 @@ class Product {
     thisProduct.data = data;
 
     thisProduct.renderInMenu();
+    thisProduct.getElements();
     thisProduct.initAccordion();
+    thisProduct.initOrderForm();
+    thisProduct.processOrder();
 
     console.log('thisProduct:', thisProduct);
   }
@@ -81,15 +84,24 @@ class Product {
     menuContainer.appendChild(thisProduct.element);
   }
 
+  getElements(){
+    const thisProduct = this;
+
+    thisProduct.accordionTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
+    thisProduct.form = thisProduct.element.querySelector(select.menuProduct.form);
+    thisProduct.formInputs = thisProduct.form.querySelectorAll(select.all.formInputs);
+    thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
+    thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
+  }
 
   initAccordion() {
     const thisProduct = this;
 
     /* find the clickable trigger (the element that should react to clicking) */
-    const trigger = thisProduct.element.querySelector(select.menuProduct.clickable);
+    const trigger = thisProduct.accordionTrigger;
 
     /* START: click event listener to trigger */
-    trigger.addEventListener('click', function(){
+    trigger.addEventListener('click', function(event){
 
       /* prevent default action for event */
       event.preventDefault();
@@ -115,6 +127,84 @@ class Product {
       }
       /* END: click event listener to trigger */
     });
+  }
+
+  initOrderForm() {
+    const thisProduct = this;
+
+    console.log('initOrderForm');
+
+    thisProduct.form.addEventListener('submit', function(event){
+      event.preventDefault();
+      thisProduct.processOrder();
+    });
+
+    for(let input of thisProduct.formInputs){
+      input.addEventListener('change', function(){
+        thisProduct.processOrder();
+      });
+    }
+
+    thisProduct.cartButton.addEventListener('click', function(event){
+      event.preventDefault();
+      thisProduct.processOrder();
+    });
+  }
+
+  processOrder() {
+    const thisProduct = this;
+
+    console.log('processOrder');
+
+    /* read all data from the form (using utils.serializeFormToObject) and save it to const formData */
+    const formData = utils.serializeFormToObject(thisProduct.form);
+    console.log('formData', formData);
+
+    /* save default price in a variable */
+    let price = thisProduct.data.price;
+    console.log('price:', price);
+
+    /* START LOOP: for each paramID in thisProduct.data.params */
+    /* save the element in thisProduct.data.params with key paramID as const param */
+    for (let paramID in thisProduct.data.params) {
+
+    const param = thisProduct.data.params;
+
+      /* START LOOP: for each optionID in param.options */
+      /* save the element in param.options with key optionID as const option */
+
+        for (let optionID in param.options) {
+
+          const option = param.options;
+
+          /* save variable to indicate that the option is selected */
+          const optionSelected = formData.hasOwnProperty(paramID) && formData[paramID].indexOf(optionID) > -1;
+
+          /* START IF: if option is selected and is not default*/
+
+		      if(optionSelected && !option.default) {
+
+          /* increase the default price by the price of that option */
+          price += option.price
+          }
+
+		    /* ELSE IF: if the option is not selected but is default */
+		      else if(!optionSelected && option.default) {
+
+        /* decrease the price by the price of that option */
+          price -= option.price
+
+        /* END ELSE IF: if option is not selected and option is default */
+        }
+
+       /* END LOOP: for each optionID in param.options */
+      }
+
+    /* END LOOP: for each paramID in thisProduct.data.params */
+    }
+    /* set the contents of thisProduct.priceElem to be the value of variable price */
+      thisProduct.priceElem.innerHTML = price;
+      console.log(price);
   }
 }
 
