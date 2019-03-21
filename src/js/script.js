@@ -198,6 +198,35 @@
           /* END ELSE IF: if option is not selected and option is default */
           }
 
+          const allPicImages = thisProduct.imageWrapper.querySelectorAll('.' + paramID + '-' + optionID);
+
+          /* START IF: if option is selected */
+          if(optionSelected) {
+
+            /* START LOOP: for each image of the option) */
+            for (let picImage of allPicImages) {
+
+              /* all images for this option get a class */
+              picImage.classList.add('active');
+
+              /* END LOOP: for each image of the option */
+            }
+
+            /* ELSE: if option is not selected*/
+          } else {
+
+          /* START LOOP: for each image of the option */
+          for (let picImage of allPicImages) {
+
+            /* all images for this option lose the class */
+            picImage.classList.remove('active');
+
+            /* END LOOP: for each image of the option */
+            }
+
+          /* END IF: if option is not selected */
+          }
+
           /* END LOOP: for each optionID in param.options */
         }
 
