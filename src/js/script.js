@@ -237,7 +237,7 @@
 
       /* multiply price by amount */
       price *= thisProduct.amountWidget.value;
-      
+
       /* set the contents of thisProduct.priceElem to be the value of variable price */
       thisProduct.priceElem.innerHTML = price;
       //console.log(price);
@@ -259,6 +259,8 @@
       const thisWidget = this;
 
       thisWidget.getElements(element);
+
+      thisWidget.value = settings.amountWidget.defaultValue;
       thisWidget.setValue(thisWidget.input.value);
       thisWidget.initActions();
 
@@ -282,9 +284,11 @@
 
       /* TODO: Add validation */
 
-      thisWidget.value = newValue;
-      thisWidget.announce();
-      thisWidget.input.value = thisWidget.value;
+      if(newValue >= settings.amountWidget.defaultMin && newValue <= settings.amountWidget.defaultMax) {
+        thisWidget.value = newValue;
+        thisWidget.announce();
+     }
+        thisWidget.input.value = thisWidget.value;
     }
 
     initActions() {
