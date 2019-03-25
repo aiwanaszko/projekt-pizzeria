@@ -410,7 +410,7 @@
       console.log('adding product', menuProduct);
 
       /* generate HTML based on template */
-      const generatedHTML = templates.cartProduct(thisCart.data);
+      const generatedHTML = templates.cartProduct(menuProduct);
 
       /* create element using utils.createElementFromHTML */
       thisCart.element = utils.createDOMFromHTML(generatedHTML);
