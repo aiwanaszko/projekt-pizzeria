@@ -128,7 +128,7 @@
       thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
       thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
       thisProduct.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper);
-      thisProduct.amountWidgetElem = thisProduct.element.querySelector(select.menuProduct.amountWidget)
+      thisProduct.amountWidgetElem = thisProduct.element.querySelector(select.menuProduct.amountWidget);
     }
 
     initAccordion() {
@@ -262,11 +262,11 @@
             /* ELSE: if option is not selected*/
           } else {
 
-          /* START LOOP: for each image of the option */
-          for (let picImage of allPicImages) {
+            /* START LOOP: for each image of the option */
+            for (let picImage of allPicImages) {
 
-            /* all images for this option lose the class */
-            picImage.classList.remove(classNames.menuProduct.imageVisible);
+              /* all images for this option lose the class */
+              picImage.classList.remove(classNames.menuProduct.imageVisible);
 
             /* END LOOP: for each image of the option */
             }
@@ -296,8 +296,8 @@
 
       thisProduct.amountWidget = new AmountWidget(thisProduct.amountWidgetElem);
 
-      thisProduct.amountWidgetElem.addEventListener('updated', function(event) {
-	    thisProduct.processOrder();
+      thisProduct.amountWidgetElem.addEventListener('updated', function() {
+        thisProduct.processOrder();
       });
     }
 
@@ -344,34 +344,34 @@
       if(newValue != thisWidget.value && newValue >= settings.amountWidget.defaultMin && newValue <= settings.amountWidget.defaultMax) {
         thisWidget.value = newValue;
         thisWidget.announce();
-     }
-        thisWidget.input.value = thisWidget.value;
+      }
+      thisWidget.input.value = thisWidget.value;
     }
 
     initActions() {
-	     const thisWidget = this;
+      const thisWidget = this;
 
-	       thisWidget.input.addEventListener('change', function(event) {
-	       thisWidget.setValue(thisWidget.input.value);
-       });
+      thisWidget.input.addEventListener('change', function() {
+        thisWidget.setValue(thisWidget.input.value);
+      });
 
-	        thisWidget.linkDecrease.addEventListener('click', function(event) {
-	        event.preventDefault();
-	        thisWidget.setValue(thisWidget.value - 1);
-        });
+      thisWidget.linkDecrease.addEventListener('click', function(event) {
+        event.preventDefault();
+        thisWidget.setValue(thisWidget.value - 1);
+      });
 
-	       thisWidget.linkIncrease.addEventListener('click', function(event) {
-	       event.preventDefault();
-         thisWidget.setValue(thisWidget.value + 1);
-       });
+      thisWidget.linkIncrease.addEventListener('click', function(event) {
+        event.preventDefault();
+        thisWidget.setValue(thisWidget.value + 1);
+      });
     }
 
     announce() {
-	     const thisWidget = this;
+      const thisWidget = this;
 
-	      const event = new Event('updated');
-	       thisWidget.element.dispatchEvent(event);
-       }
+      const event = new Event('updated');
+      thisWidget.element.dispatchEvent(event);
+    }
   }
 
   class Cart{
@@ -399,7 +399,7 @@
     initActions() {
       const thisCart = this;
 
-      thisCart.dom.toggleTrigger.addEventListener('click', function(event) {
+      thisCart.dom.toggleTrigger.addEventListener('click', function() {
         thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive);
       });
     }
