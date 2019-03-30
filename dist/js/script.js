@@ -429,7 +429,7 @@
       thisCart.dom.form.addEventListener('submit', function() {
         event.preventDefault();
         thisCart.sendOrder();
-      })
+      });
     }
 
     sendOrder() {
@@ -437,22 +437,27 @@
 
       const url = settings.db.url + '/' + settings.db.order;
 
-        const payload = {
-          address: thisCart.dom.address,
-          phone: thisCart.dom.phone,
-          totalPrice: thisCart.totalPrice,
-          totalNumber: thisCart.totalNumber,
-          subtotalPrice: thisCart.subtotalPrice,
-          deliveryFee: thisCart.deliveryFee,
-        };
+      const payload = {
+        address: thisCart.dom.address,
+        phone: thisCart.dom.phone,
+        totalPrice: thisCart.totalPrice,
+        totalNumber: thisCart.totalNumber,
+        subtotalPrice: thisCart.subtotalPrice,
+        deliveryFee: thisCart.deliveryFee,
+        products: [],
+      };
 
-        const options = {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(payload),
-        };
+      for (let product of thisCart.products) {
+        payload.products.push(product.getData());
+      }
+
+      const options = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      };
 
       fetch(url, options)
         .then(function(response){
@@ -460,7 +465,7 @@
         }) .then(function(parsedResponse){
           console.log('parsedResponse', parsedResponse);
         });
-      }
+    }
 
     add(menuProduct){
       const thisCart = this;
@@ -594,8 +599,21 @@
         thisCartProduct.remove();
       });
     }
-  }
 
+    getData() {
+      const thisCartProduct = this;
+
+      const data = {
+        id: thisCartProduct.id,
+        amount: thisCartProduct.amount,
+        price: thisCartProduct.price,
+        priceSingle: thisCartProduct.priceSingle,
+        params: thisCartProduct.params,
+      };
+
+      return data;
+    }
+  }
 
 
   const app = {
