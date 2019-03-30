@@ -402,6 +402,9 @@
       thisCart.dom.wrapper = element;
       thisCart.dom.toggleTrigger = thisCart.dom.wrapper.querySelector(select.cart.toggleTrigger);
       thisCart.dom.productList = thisCart.dom.wrapper.querySelector(select.cart.productList);
+      thisCart.dom.form = thisCart.dom.wrapper.querySelector(select.cart.form);
+      thisCart.dom.phone = thisCart.dom.wrapper.querySelector(select.cart.phone);
+      thisCart.dom.address = thisCart.dom.wrapper.querySelector(select.cart.address);
 
       thisCart.renderTotalsKeys = ['totalNumber', 'totalPrice', 'subtotalPrice', 'deliveryFee'];
 
@@ -422,6 +425,41 @@
       thisCart.dom.productList.addEventListener('remove', function() {
         thisCart.remove(event.detail.cartProduct);
       });
+
+      thisCart.dom.form.addEventListener('submit', function() {
+        event.preventDefault();
+        thisCart.sendOrder();
+      });
+    }
+
+    sendOrder() {
+      const thisCart = this;
+
+      const url = settings.db.url + '/' + settings.db.order;
+
+      const payload = {
+        address: thisCart.dom.address,
+        phone: thisCart.dom.phone,
+        totalPrice: thisCart.totalPrice,
+        totalNumber: thisCart.totalNumber,
+        subtotalPrice: thisCart.subtotalPrice,
+        deliveryFee: thisCart.deliveryFee,
+      };
+
+      const options = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      };
+
+      fetch(url, options)
+        .then(function(response){
+          return response.json();
+        }) .then(function(parsedResponse){
+          console.log('parsedResponse', parsedResponse);
+        });
     }
 
     add(menuProduct){
@@ -589,9 +627,9 @@
 
           /* execute initMenu method */
           thisApp.initMenu();
-        })
+        });
 
-        console.log('thisApp.data', JSON.stringify(thisApp.data));
+      console.log('thisApp.data', JSON.stringify(thisApp.data));
     },
 
     init: function(){
