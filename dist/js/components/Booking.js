@@ -1,4 +1,5 @@
 import {settings, select, templates} from '../settings.js';
+import {AmountWidget} from './AmountWidget.js';
 
 export class Booking{
   constructor() {
@@ -21,9 +22,9 @@ export class Booking{
     /* insert generated HTML code into wrapper */
     thisBooking.dom.wrapper.innerHTML = generatedHTML;
 
-    thisBooking.dom.peopleAmount = wrapper.querySelector(select.booking.peopleAmount);
+    thisBooking.dom.peopleAmount = thisBooking.dom.wrapper.querySelector(select.booking.peopleAmount);
 
-    thisBooking.dom.hoursAmount = wrapper.querySelector(select.booking.hoursAmount);
+    thisBooking.dom.hoursAmount = thisBooking.dom.wrapper.querySelector(select.booking.hoursAmount);
 
   }
 
