@@ -19,7 +19,7 @@ export class Booking{
     thisBooking.dom.wrapper = document.querySelector(select.containerOf.booking);
 
     /* insert generated HTML code into wrapper */
-    thisBooking.dom.wrapper.appendChild(generatedHTML);
+    thisBooking.dom.wrapper.innerHTML = generatedHTML;
 
     thisBooking.dom.peopleAmount = wrapper.querySelector(select.booking.peopleAmount);
 
