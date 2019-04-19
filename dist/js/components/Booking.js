@@ -1,8 +1,10 @@
+import {settings, select, templates} from '../settings.js';
+
 export class Booking{
   constructor() {
     const thisBooking = this;
 
-    thisBooking.render(reservationWidget);
+    thisBooking.render(document.querySelector(select.containerOf.booking));
     thisBooking.initWidgets();
   }
 
@@ -14,7 +16,7 @@ export class Booking{
     thisBooking.dom = {};
 
     /* save the argument as wrapper */
-    thisBooking.dom.wrapper = wrapper;
+    thisBooking.dom.wrapper = document.querySelector(select.containerOf.booking);
 
     /* insert generated HTML code into wrapper */
     thisBooking.dom.wrapper.appendChild(generatedHTML);
