@@ -1,6 +1,7 @@
 import {Product} from './components/Product.js';
 import {Cart} from './components/Cart.js';
 import {select, settings, classNames, templates} from './settings.js';
+import {Booking} from './components/Booking.js';
 
 const app = {
   initMenu: function() {
@@ -97,6 +98,7 @@ const app = {
     thisApp.initPages();
     thisApp.initData();
     thisApp.initCart();
+    thisApp.initBooking();
   },
 
   initCart: function(){
@@ -110,6 +112,14 @@ const app = {
     thisApp.productList.addEventListener('add-to-cart', function(event) {
       app.cart.add(event.detail.product);
     });
+  },
+
+  initBooking: function(){
+    const thisApp = this;
+
+    const reservationWidget = document.querySelector(select.containerOf.booking);
+
+    const newBooking = new Booking();
   }
 };
 

@@ -1,0 +1,34 @@
+export class Booking{
+  constructor() {
+    const thisBooking = this;
+
+    thisBooking.render(reservationWidget);
+    thisBooking.initWidgets();
+  }
+
+  render() {
+    const thisBooking = this;
+
+    const generatedHTML = templates.bookingWidget();
+
+    thisBooking.dom = {};
+
+    /* save the argument as wrapper */
+    thisBooking.dom.wrapper = wrapper;
+
+    /* insert generated HTML code into wrapper */
+    thisBooking.dom.wrapper.appendChild(generatedHTML);
+
+    thisBooking.dom.peopleAmount = wrapper.querySelector(select.booking.peopleAmount);
+
+    thisBooking.dom.hoursAmount = wrapper.querySelector(select.booking.hoursAmount);
+
+  }
+
+  initWidgets() {
+    const thisBooking = this;
+
+    thisBooking.peopleAmount = new AmountWidget(thisBooking.dom.peopleAmount);
+    thisBooking.hoursAmount = new AmountWidget(thisBooking.dom.hoursAmount);
+  }
+}
