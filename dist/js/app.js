@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+
 import {Product} from './components/Product.js';
 import {Cart} from './components/Cart.js';
 import {select, settings, classNames, templates} from './settings.js';

@@ -36,7 +36,7 @@
 
   &__description {
     color: lighten($color-dark, 10%);
-
+  }
 
   &__wrapper {
     @include flex(row, center, space-between);
