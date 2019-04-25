@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+/* global rangeSlider */
 
 
 import {BaseWidget} from './BaseWidget.js';

@@ -78,17 +78,17 @@ export class Booking{
       fetch(urls.eventsCurrent),
       fetch(urls.eventsRepeat),
     ])
-    .then(function([bookingsResponse, eventsCurrentResponse, eventsRepeatResponse]){
-      return Promise.all([
-        bookingsResponse.json(),
-        eventsCurrentResponse.json(),
-        eventsRepeatResponse.json(),
-      ]);
-    })
-    .then(function([bookings, eventsCurrent, eventsRepeat]){
-      thisBooking.parseData(bookings, eventsCurrent, eventsRepeat);
-    });
-  };
+      .then(function([bookingsResponse, eventsCurrentResponse, eventsRepeatResponse]){
+        return Promise.all([
+          bookingsResponse.json(),
+          eventsCurrentResponse.json(),
+          eventsRepeatResponse.json(),
+        ]);
+      })
+      .then(function([bookings, eventsCurrent, eventsRepeat]){
+        thisBooking.parseData(bookings, eventsCurrent, eventsRepeat);
+      });
+  }
 
   parseData(bookings, eventsCurrent, eventsRepeat) {
     const thisBooking = this;
@@ -109,9 +109,17 @@ export class Booking{
       thisBooking.makeBooked(date, duration, table, hour);
     }
 
-    for (let i = 0; i < eventsRepeat.length; i++) {
-      const { date, duration, table, hour } = eventsRepeat[i];
-      thisBooking.makeBooked(date, duration, table, hour);
+    thisBooking.minDate = new Date();
+    thisBooking.maxDate = utils.addDays(thisBooking.minDate, settings.datePicker.maxDaysInFuture);
+
+    console.log('minDate', thisBooking.minDate);
+    console.log('maxDate', thisBooking.maxDate);
+
+    for (let i = 0; i < thisBooking.maxDate; i++) {
+      for (let i = 0; i < eventsRepeat.length; i++) {
+        const { date, duration, table, hour } = eventsRepeat[i];
+        thisBooking.makeBooked(date, duration, table, hour);
+      }
     }
 
   }
