@@ -115,12 +115,13 @@ export class Booking{
     console.log('minDate', thisBooking.minDate);
     console.log('maxDate', thisBooking.maxDate);
 
-    for (let i = 0; i < thisBooking.maxDate; i++) {
+    for (let i = thisBooking.minDate; i < thisBooking.maxDate; i++) {
       for (let i = 0; i < eventsRepeat.length; i++) {
         const { date, duration, table, hour } = eventsRepeat[i];
         thisBooking.makeBooked(date, duration, table, hour);
       }
     }
+
 
   }
 
