@@ -95,10 +95,34 @@ export class Booking{
 
     thisBooking.booked = {};
 
-    // console.log('eventsCurrent:', eventsCurrent);
+    console.log('eventsCurrent', eventsCurrent);
+    console.log('bookings', bookings);
+    console.log('eventsRepeat', eventsRepeat);
 
-    for (let oneBooking of thisBooking.booked) {
-      console.log('event:', oneBooking);
+    for (let i = 0; i < eventsCurrent.length; i++) {
+      const { date, duration, table, hour } = eventsCurrent[i];
+      thisBooking.makeBooked(date, duration, table, hour);
+    }
+
+    for (let i = 0; i < bookings.length; i++) {
+      const { date, duration, table, hour } = bookings[i];
+      thisBooking.makeBooked(date, duration, table, hour);
+    }
+
+    for (let i = 0; i < eventsRepeat.length; i++) {
+      const { date, duration, table, hour } = eventsRepeat[i];
+      thisBooking.makeBooked(date, duration, table, hour);
+    }
+
+  }
+
+  makeBooked(date, duration, table, hour){
+    const thisBooking = this;
+
+    thisBooking.booked[date] = {};
+
+    for (let i = 0; i < duration; i = i + 0.5) {
+      thisBooking.booked[date][utils.hourToNumber(hour) + i] = [table];
     }
 
   }
