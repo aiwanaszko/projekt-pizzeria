@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 
-import {settings, select, templates} from '../settings.js';
+import {settings, select, templates, classNames} from '../settings.js';
 import {AmountWidget} from './AmountWidget.js';
 import {DatePicker} from './DatePicker.js';
 import {HourPicker} from './HourPicker.js';
@@ -36,11 +36,8 @@ export class Booking{
 
     thisBooking.dom.hourPicker = thisBooking.dom.wrapper.querySelector(select.widgets.hourPicker.wrapper);
 
-  }
+    thisBooking.dom.tables = thisBooking.dom.wrapper.querySelectorAll(select.booking.tables);
 
-  updateDOM(){
-    const thisBooking = this;
-    console.log('Hello');
   }
 
   initWidgets() {
@@ -52,8 +49,29 @@ export class Booking{
     thisBooking.hourPicker = new HourPicker(thisBooking.dom.hourPicker);
 
     thisBooking.dom.wrapper.addEventListener('updated', function() {
-      updateDOM();
+      thisBooking.updateDOM();
     });
+  }
+
+  updateDOM() {
+    const thisBooking = this;
+    console.log('Hello');
+
+    thisBooking.date = thisBooking.datePicker.value;
+    thisBooking.hour = utils.hourToNumber(thisBooking.hourPicker.value);
+
+    console.log('aaa', thisBooking.booked);
+    console.log('bbb', thisBooking.booked[thisBooking.date]);
+    console.log('ccc', thisBooking.booked[thisBooking.date][thisBooking.hour]);
+
+    for (let singleTable of thisBooking.dom.tables) {
+      const tableNumber = singleTable.getAttribute(settings.booking.tableIdAttribute);
+      console.log('table number', tableNumber);
+
+      if (thisBooking.booked[thisBooking.date] !== 'undefined' && thisBooking.booked[thisBooking.date][thisBooking.hour] !== 'undefined' && thisBooking.booked[thisBooking.date][thisBooking.hour].includes(tableNumber)) {
+        singleTable.classList.add(classNames.booking.tableBooked);
+        } else singleTable.classList.remove(classNames.booking.tableBooked);
+      }
   }
 
   getData() {
@@ -131,6 +149,8 @@ export class Booking{
       }
     }
     console.log('booked', thisBooking.booked);
+
+    thisBooking.updateDOM();
   }
 
   makeBooked(date, duration, table, hour){
