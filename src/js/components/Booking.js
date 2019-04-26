@@ -95,9 +95,9 @@ export class Booking{
 
     thisBooking.booked = {};
 
-    console.log('eventsCurrent', eventsCurrent);
+    /* console.log('eventsCurrent', eventsCurrent);
     console.log('bookings', bookings);
-    console.log('eventsRepeat', eventsRepeat);
+    console.log('eventsRepeat', eventsRepeat); */
 
     for (let i = 0; i < eventsCurrent.length; i++) {
       const { date, duration, table, hour } = eventsCurrent[i];
@@ -115,12 +115,16 @@ export class Booking{
     console.log('minDate', thisBooking.minDate);
     console.log('maxDate', thisBooking.maxDate);
 
-    for (let i = thisBooking.minDate; i < thisBooking.maxDate; i++) {
-      for (let i = 0; i < eventsRepeat.length; i++) {
-        const { date, duration, table, hour } = eventsRepeat[i];
+    for (let i = thisBooking.minDate; i <= thisBooking.maxDate; i = utils.addDays(i, 1)) {
+      const dateRange = [];
+      dateRange.push(i);
+      for (let j = 0; i < eventsRepeat.length; j++) {
+        const { date, duration, table, hour } = eventsRepeat[j];
         thisBooking.makeBooked(date, duration, table, hour);
       }
     }
+
+
 
 
   }
