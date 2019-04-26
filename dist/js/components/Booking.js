@@ -60,13 +60,16 @@ export class Booking{
     thisBooking.date = thisBooking.datePicker.value;
     thisBooking.hour = utils.hourToNumber(thisBooking.hourPicker.value);
 
-    console.log('aaa', thisBooking.booked);
-    console.log('bbb', thisBooking.booked[thisBooking.date]);
-    console.log('ccc', thisBooking.booked[thisBooking.date][thisBooking.hour]);
+    //console.log('aaa', thisBooking.booked);
+    //console.log('bbb', thisBooking.booked[thisBooking.date]);
+    //console.log('ccc', thisBooking.booked[thisBooking.date][thisBooking.hour]);
+    //console.log('eee', thisBooking.booked[thisBooking.date][thisBooking.hour].includes(3));
 
     for (let singleTable of thisBooking.dom.tables) {
-      const tableNumber = singleTable.getAttribute(settings.booking.tableIdAttribute);
-      console.log('table number', tableNumber);
+      let tableNumber = parseInt(singleTable.getAttribute(settings.booking.tableIdAttribute));
+      //console.log(tableNumber);
+      //console.log('fff', thisBooking.booked[thisBooking.date][thisBooking.hour].includes(tableNumber));
+      //console.log('type of tableNumber', typeof tableNumber);
 
       if (thisBooking.booked[thisBooking.date] !== 'undefined' && thisBooking.booked[thisBooking.date][thisBooking.hour] !== 'undefined' && thisBooking.booked[thisBooking.date][thisBooking.hour].includes(tableNumber)) {
         singleTable.classList.add(classNames.booking.tableBooked);
