@@ -76,31 +76,31 @@ export class Booking{
 
       if (thisBooking.booked[thisBooking.date] !== 'undefined' && thisBooking.booked[thisBooking.date][thisBooking.hour] !== 'undefined' && thisBooking.booked[thisBooking.date][thisBooking.hour].includes(tableNumber)) {
         singleTable.classList.add(classNames.booking.tableBooked);
-        } else singleTable.classList.remove(classNames.booking.tableBooked);
+      } else singleTable.classList.remove(classNames.booking.tableBooked);
+    }
+
+    for (let singleTable of thisBooking.dom.tables) {
+      singleTable.addEventListener('click', function() {
+        if (!(singleTable.classList.contains(classNames.booking.tableBooked))) {
+          singleTable.classList.add(classNames.booking.tableReserved);
+        }
+      });
+      thisBooking.dom.hourPicker.addEventListener('updated', function() {
+        console.log('change of time');
+        if (singleTable.classList.contains(classNames.booking.tableReserved)) {
+          singleTable.classList.remove(classNames.booking.tableReserved);
+        }
+      });
+    }
+
+    thisBooking.dom.datePicker.addEventListener('updated', function() {
+      console.log('change of hour');
+      for (let singleTable of thisBooking.dom.tables) {
+        if (singleTable.classList.contains(classNames.booking.tableReserved)) {
+          singleTable.classList.remove(classNames.booking.tableReserved);
+        }
       }
-
-     for (let singleTable of thisBooking.dom.tables) {
-       singleTable.addEventListener('click', function() {
-         if (!(singleTable.classList.contains(classNames.booking.tableBooked))) {
-         singleTable.classList.add(classNames.booking.tableReserved);
-         }
-       })
-       thisBooking.dom.hourPicker.addEventListener('updated', function() {
-         console.log('change of time');
-         if (singleTable.classList.contains(classNames.booking.tableReserved)) {
-           singleTable.classList.remove(classNames.booking.tableReserved);
-         }
-       })
-     }
-
-     thisBooking.dom.datePicker.addEventListener('updated', function() {
-       console.log('change of hour');
-       for (let singleTable of thisBooking.dom.tables) {
-         if (singleTable.classList.contains(classNames.booking.tableReserved)) {
-           singleTable.classList.remove(classNames.booking.tableReserved);
-         }
-       }
-     })
+    });
   }
 
   sendBooking() {
@@ -121,24 +121,24 @@ export class Booking{
     for (let singleTable of thisBooking.dom.tables) {
       if (singleTable.classList.contains(classNames.booking.tableReserved)) {
         payload.table.push(singleTable.getAttribute(settings.booking.tableIdAttribute));
+      }
+
+      const options = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      };
+
+      fetch(url, options)
+        .then(function(response){
+          return response.json();
+        }) .then(function(parsedResponse){
+          console.log('parsedResponse', parsedResponse);
+        });
     }
-
-    const options = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(payload),
-    };
-
-    fetch(url, options)
-      .then(function(response){
-        return response.json();
-      }) .then(function(parsedResponse){
-        console.log('parsedResponse', parsedResponse);
-      });
   }
-}
 
 
   getData() {
@@ -190,7 +190,7 @@ export class Booking{
     thisBooking.booked = {};
 
     // console.log('eventsCurrent', eventsCurrent)
-    console.log('BOOKINGS', bookings);
+    // console.log('BOOKINGS', bookings);
     // console.log('eventsRepeat', eventsRepeat);
 
     for (let i = 0; i < eventsCurrent.length; i++) {
