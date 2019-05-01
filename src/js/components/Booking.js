@@ -53,14 +53,15 @@ export class Booking{
     thisBooking.datePicker = new DatePicker(thisBooking.dom.datePicker);
     thisBooking.hourPicker = new HourPicker(thisBooking.dom.hourPicker);
 
-    thisBooking.dom.wrapper.addEventListener('updated', function() {
-      thisBooking.updateDOM();
-    });
-
     thisBooking.dom.form.addEventListener('submit', function() {
       event.preventDefault();
       thisBooking.sendBooking();
     });
+
+    thisBooking.dom.wrapper.addEventListener('updated', function() {
+      thisBooking.updateDOM();
+    });
+
   }
 
   updateDOM() {
@@ -108,36 +109,40 @@ export class Booking{
 
     const url = settings.db.url + '/' + settings.db.booking;
 
+    for (let singleTable of thisBooking.dom.tables) {
+      if (singleTable.classList.contains(classNames.booking.tableReserved)) {
+        const tableNumber = parseInt(singleTable.getAttribute(settings.booking.tableIdAttribute));
+        thisBooking.table = tableNumber;
+      }
+    }
+
     const payload = {
       date: thisBooking.datePicker.value,
       hour: thisBooking.hourPicker.value,
-      table: [],
+      table: thisBooking.table,
       people: thisBooking.peopleAmount.value,
       duration: thisBooking.hoursAmount.value,
       phone: thisBooking.dom.phone.value,
       address: thisBooking.dom.address.value,
     };
 
-    for (let singleTable of thisBooking.dom.tables) {
-      if (singleTable.classList.contains(classNames.booking.tableReserved)) {
-        payload.table.push(singleTable.getAttribute(settings.booking.tableIdAttribute));
-      }
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    };
 
-      const options = {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(payload),
-      };
+    fetch(url, options)
+      .then(function(response){
+        return response.json();
+      }) .then(function(parsedResponse){
+        console.log('parsedResponse', parsedResponse);
+      });
 
-      fetch(url, options)
-        .then(function(response){
-          return response.json();
-        }) .then(function(parsedResponse){
-          console.log('parsedResponse', parsedResponse);
-        });
-    }
+      console.log('thisBooking.booked', thisBooking.booked);
+
   }
 
 
