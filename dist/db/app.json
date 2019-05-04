@@ -222,10 +222,7 @@
       "repeat": "daily",
       "duration": 2,
       "ppl": 3,
-      "starters": [
-        "bread",
-        "lemonWater"
-      ]
+      "starters": ["bread", "lemonWater"]
     },
     {
       "id": 3,
@@ -235,10 +232,7 @@
       "repeat": "daily",
       "duration": 2,
       "ppl": 3,
-      "starters": [
-        "bread",
-        "lemonWater"
-      ]
+      "starters": ["bread", "lemonWater"]
     },
     {
       "id": 4,
@@ -258,9 +252,7 @@
       "repeat": "daily",
       "duration": 2,
       "ppl": 3,
-      "starters": [
-        "lemonWater"
-      ]
+      "starters": ["lemonWater"]
     }
   ],
   "booking": [
@@ -272,62 +264,7 @@
       "repeat": "daily",
       "duration": 2,
       "ppl": 3,
-      "starters": [
-        "bread",
-        "lemonWater"
-      ]
-    },
-    {
-      "date": [
-        "2019-05-15T22:00:00.000Z"
-      ],
-      "hour": "17:00",
-      "table": 1,
-      "people": 3,
-      "duration": 3,
-      "phone": "12345",
-      "address": "adfsgdfh",
-      "id": 3
-    },
-    {
-      "date": "2019-05-04",
-      "hour": "18:30",
-      "table": 1,
-      "people": 2,
-      "duration": 1,
-      "phone": "1243",
-      "address": "asdf",
-      "id": 4
-    },
-    {
-      "date": "2019-05-09",
-      "hour": "19:00",
-      "table": 1,
-      "people": 2,
-      "duration": 2,
-      "phone": "12435657",
-      "address": "asdfgh",
-      "id": 5
-    },
-    {
-      "date": "2019-05-14",
-      "hour": "17:00",
-      "table": 2,
-      "people": 1,
-      "duration": 4,
-      "phone": "3456",
-      "address": "sdfghj",
-      "id": 6
-    },
-    {
-      "date": "2019-05-11",
-      "hour": "15:30",
-      "table": 3,
-      "people": 2,
-      "duration": 2,
-      "phone": "1342",
-      "address": "wsd",
-      "id": 7
+      "starters": ["bread", "lemonWater"]
     }
   ]
 }
