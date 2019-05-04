@@ -24,10 +24,11 @@ export class DatePicker extends BaseWidget{
 
 
     flatpickr(thisWidget.dom.input, {
+      dateFormat: 'Y-m-d',
       defaultDate: thisWidget.minDate,
       minDate: thisWidget.minDate,
       maxDate: thisWidget.maxDate,
-      onChange: function(dateStr) {
+      onChange: function(selectedDates, dateStr, instance) {
         thisWidget.value = dateStr;
       },
       'disable': [

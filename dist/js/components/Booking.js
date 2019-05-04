@@ -92,16 +92,13 @@ export class Booking{
           singleTable.classList.remove(classNames.booking.tableReserved);
         }
       });
-    }
-
-    thisBooking.dom.datePicker.addEventListener('updated', function() {
-      console.log('change of date');
-      for (let singleTable of thisBooking.dom.tables) {
+      thisBooking.dom.datePicker.addEventListener('updated', function() {
+        console.log('change of time');
         if (singleTable.classList.contains(classNames.booking.tableReserved)) {
           singleTable.classList.remove(classNames.booking.tableReserved);
         }
-      }
-    });
+      });
+    }
   }
 
   sendBooking() {
