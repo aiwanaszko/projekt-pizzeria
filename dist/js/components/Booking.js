@@ -83,7 +83,7 @@ export class Booking{
     for (let singleTable of thisBooking.dom.tables) {
       singleTable.addEventListener('click', function() {
         if (!(singleTable.classList.contains(classNames.booking.tableBooked))) {
-          singleTable.classList.add(classNames.booking.tableReserved);
+          singleTable.classList.toggle(classNames.booking.tableReserved);
         }
       });
       thisBooking.dom.hourPicker.addEventListener('updated', function() {
@@ -95,7 +95,7 @@ export class Booking{
     }
 
     thisBooking.dom.datePicker.addEventListener('updated', function() {
-      console.log('change of hour');
+      console.log('change of date');
       for (let singleTable of thisBooking.dom.tables) {
         if (singleTable.classList.contains(classNames.booking.tableReserved)) {
           singleTable.classList.remove(classNames.booking.tableReserved);
@@ -141,7 +141,7 @@ export class Booking{
         console.log('parsedResponse', parsedResponse);
       });
 
-      console.log('thisBooking.booked', thisBooking.booked);
+    console.log('thisBooking.booked', thisBooking.booked);
 
   }
 
