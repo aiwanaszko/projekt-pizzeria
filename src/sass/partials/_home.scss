@@ -1,0 +1,192 @@
+#pages {
+  > * {
+    display: none;
+  }
+
+  > .active {
+    display: block;
+  }
+}
+
+.home-wrapper {
+  margin: ($base-size * 3.5) auto;
+  padding: ($base-size * 6) ($base-size * 4);
+  background: $color-light;
+  border-bottom: 1px solid lighten($color-dark, 70%);
+  border-radius: $radius;
+}
+
+.opening-times {
+  background-color: $color-main;
+  border-radius: $radius;
+  margin-top: 7px;
+  width: inherit;
+  padding: 10px;
+}
+
+.top-img {
+  display: flex;
+  justify-content: space-between;
+}
+
+.bw-photo {
+  height: 100px;
+  width: 290px;
+  object-fit: cover;
+  flex: 1;
+  overflow: hidden;
+  border-radius: $radius;
+}
+
+.bw-card {
+  height: 100px;
+}
+
+.card-body p {
+  color: $color-light;
+}
+
+.card-body p {
+  margin-top: 50px;
+}
+
+.bw-card:hover .card-body > p {
+  margin-top: 0;
+  transition: 1s;
+}
+
+.bw-card:hover .card-body > h2 {
+  padding-top: 0;
+  transition: 1s;
+}
+
+
+h2, h5 {
+  text-transform: uppercase;
+  text-align: center;
+  color: $color-light;
+}
+
+h2 {
+  font-size: 20px;
+}
+
+h5 {
+  font-size: 12px;
+}
+
+.carousel-section {
+  margin-top: 100px;
+}
+
+.carousel-indicators > li {
+  border-radius: 50%;
+  width: 8px;
+  height: 8px;
+}
+
+/* ol.carousel-indicators li,  {
+  background: $color-dark;
+  opacity: 0.5;
+  margin-left: 10px;
+  margin-top: 50px;
+} */
+
+ol.carousel-indicators li.active {
+  background: $color-dark;
+}
+
+.carousel {
+  padding: 20px;
+}
+
+.quotes-img {
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  border-radius: $radius;
+  object-fit: cover;
+}
+
+.gallery {
+  margin: 100px 0 0 0;
+}
+
+.gallery-photo {
+  width: 200px;
+  height: 200px;
+  margin-bottom: 10px;
+  object-fit: cover;
+  border-radius: $radius;
+}
+
+.photo-container {
+  position: relative;
+}
+
+
+.gallery-photo {
+  width: 200px;
+  height: 200px;
+  margin-bottom: 10px;
+  object-fit: cover;
+  border-radius: $radius;
+}
+
+.photo-container {
+  position: relative;
+}
+
+.gallery-photo {
+  width: 200px;
+  height: 200px;
+  margin-bottom: 10px;
+  object-fit: cover;
+  border-radius: $radius;
+}
+
+.photo-container {
+  position: relative;
+}
+
+.photo-container:hover::after {
+  width: 100%;
+  height: 100%;
+  content: "";
+  background: $color-dark;
+  opacity: 0.7;
+  position: absolute;
+  display: block;
+  z-index: 1;
+  top: 0;
+  left: 0;
+}
+
+.photo-container:hover::after .fas {
+  opacity: 1;
+  z-index: 2;
+}
+
+.fas {
+  color: $color-light;
+  font-size: 30px;
+  padding: 5px;
+  opacity: 0;
+}
+
+
+.fas:hover{
+  color: $color-main;
+  opacity: 1;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.card {
+  border: none;
+}
+
+.ig {
+  color: $color-main;
+  text-decoration: underline;
+}

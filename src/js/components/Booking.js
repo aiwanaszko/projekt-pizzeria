@@ -80,7 +80,7 @@ export class Booking{
       } else singleTable.classList.remove(classNames.booking.tableBooked);
     }
 
-      for (let singleTable of thisBooking.dom.tables) {
+    for (let singleTable of thisBooking.dom.tables) {
       singleTable.addEventListener('click', function() {
         if (!(singleTable.classList.contains(classNames.booking.tableBooked))) {
           singleTable.classList.add(classNames.booking.tableReserved);
