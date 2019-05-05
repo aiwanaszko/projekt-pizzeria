@@ -50,6 +50,32 @@ const app = {
 
       });
     }
+
+    // poczatek kodu do poprawienia
+
+    thisApp.orderLink = document.querySelector(select.containerOf.orderLink);
+    thisApp.bookingLink = document.querySelector(select.containerOf.bookingLink);
+
+    thisApp.orderLink.addEventListener('click', function() {
+
+      for (let page of thisApp.pages) {
+        if (page.getAttribute('id') == 'order') {
+          page.classList.add(classNames.nav.active);
+        }
+      }
+
+      for (let link of thisApp.navLinks) {
+        if (link.getAttribute('href') == '#') {
+          link.classList.add(classNames.nav.active);
+        }
+      }
+    });
+
+    /* thisApp.bookingLink.addEventListener('click', function() {
+
+    }); */
+
+    // koniec kodu do poprawienia
   },
 
   activatePage: function(pageId) {
@@ -65,6 +91,7 @@ const app = {
 
     window.location.hash = '#/' + pageId;
   },
+
 
   initData: function() {
     const thisApp = this;
