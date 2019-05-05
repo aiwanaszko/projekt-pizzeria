@@ -112,30 +112,8 @@ ol.carousel-indicators li.active {
   margin: 100px 0 0 0;
 }
 
-.gallery-photo {
-  width: 200px;
-  height: 200px;
-  margin-bottom: 10px;
-  object-fit: cover;
-  border-radius: $radius;
-}
-
-.photo-container {
-  position: relative;
-}
 
 
-.gallery-photo {
-  width: 200px;
-  height: 200px;
-  margin-bottom: 10px;
-  object-fit: cover;
-  border-radius: $radius;
-}
-
-.photo-container {
-  position: relative;
-}
 
 .gallery-photo {
   width: 200px;
@@ -162,10 +140,6 @@ ol.carousel-indicators li.active {
   left: 0;
 }
 
-.photo-container:hover::after .fas {
-  opacity: 1;
-  z-index: 2;
-}
 
 .fas {
   color: $color-light;
@@ -174,6 +148,10 @@ ol.carousel-indicators li.active {
   opacity: 0;
 }
 
+
+.photo-container:hover::after .fas {
+   opacity: 1;
+}
 
 .fas:hover{
   color: $color-main;
