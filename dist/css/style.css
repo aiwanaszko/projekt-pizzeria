@@ -900,15 +900,32 @@ input.error, select.error {
   height: 100px;
 }
 
-.card-body p {
-  color: #fff;
+.card-body h2 {
+  margin-top: 130px;
 }
 
 .card-body p {
-  margin-top: 50px;
+  margin-top: 90px;
+  position: relative;
+  color: #ff6b6b;
+  overflow: hidden;
 }
 
 .bw-card:hover .card-body > p {
+  margin-top: 0;
+  margin-bottom: 130px;
+  color: #fff;
+  transition: 1s ease;
+}
+
+.bw-card a {
+  text-decoration: none;
+}
+
+/* .bw-card:hover .card-body > h2 {
+  margin-top: 10px;
+} */
+/* .bw-card:hover .card-body > p {
   margin-top: 0;
   transition: 1s;
 }
@@ -916,8 +933,10 @@ input.error, select.error {
 .bw-card:hover .card-body > h2 {
   padding-top: 0;
   transition: 1s;
+  position: relative;
 }
 
+*/
 h2, h5 {
   text-transform: uppercase;
   text-align: center;
@@ -970,29 +989,41 @@ ol.carousel-indicators li.active {
 }
 
 .gallery-photo {
-  width: 200px;
-  height: 200px;
-  margin-bottom: 10px;
+  height: inherit;
+  width: inherit;
   -o-object-fit: cover;
      object-fit: cover;
-  border-radius: 4px;
+  border-radius: inherit;
 }
 
 .photo-container {
   position: relative;
+  width: 200px;
+  height: 200px;
+  border-radius: 4px;
+  margin-bottom: 10px;
 }
 
-.photo-container:hover::after {
-  width: 100%;
-  height: 100%;
-  content: "";
-  background: #333;
-  opacity: 0.7;
+.overlay {
   position: absolute;
-  display: block;
-  z-index: 1;
   top: 0;
+  bottom: 0;
   left: 0;
+  right: 20%;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .1s ease;
+  background-color: #333;
+}
+
+.photo-container:hover .overlay {
+  opacity: 0.5;
+}
+
+.container:hover .fas {
+  opacity: 1;
+  z-index: 10;
 }
 
 .fas {
@@ -1002,14 +1033,14 @@ ol.carousel-indicators li.active {
   opacity: 0;
 }
 
-.photo-container:hover::after .fas {
-  opacity: 1;
-}
-
 .fas:hover {
   color: #ff6b6b;
   opacity: 1;
   cursor: pointer;
+  z-index: 2;
+}
+
+.card-body {
   z-index: 2;
 }
 
