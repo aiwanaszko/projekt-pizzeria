@@ -13,7 +13,6 @@ export class Booking{
     thisBooking.render(document.querySelector(select.containerOf.booking));
     thisBooking.initWidgets();
     thisBooking.getData();
-    thisBooking.colorSlider();
   }
 
   render() {
@@ -220,6 +219,7 @@ export class Booking{
     console.log('booked', thisBooking.booked);
 
     thisBooking.updateDOM();
+    thisBooking.colorSlider();
   }
 
   makeBooked(date, duration, table, hour){
@@ -234,51 +234,46 @@ export class Booking{
       }
     }
 
+    // console.log('stworzony element', thisBooking.booked[date]);
+
   }
 
   colorSlider(date, duration, table, hour){
     const thisBooking = this;
 
-    //thisBooking.rangeSliderWrapper = document.querySelector(select.containerOf.rangeSlider);
-    //console.log('RANGE SLIDER', thisBooking.rangeSliderWrapper);
-
-    console.log('ODWOLANIE', thisBooking.booked);
-
     let rangeSliderWrapper = document.querySelector(select.containerOf.rangeSlider);
-    let rangeContainer = document.createElement('div');
-    rangeContainer.classList.add('main-range');
-    rangeSliderWrapper.appendChild(rangeContainer);
+    console.log('RANGE SLIDER', rangeSliderWrapper);
 
     for (let i = 12; i < 24; i = i + 0.5) {
-      let topLayer = document.createElement('div');
-      topLayer.classList.add('half', 'range-' + i);
-      rangeContainer.appendChild(topLayer);
+      let colorLayer = document.createElement('div');
+      colorLayer.classList.add('half');
+      colorLayer.setAttribute('data-tag', i);
+      rangeSliderWrapper.appendChild(colorLayer);
     }
 
-    thisBooking.parts = Array.from(document.querySelector(select.containerOf.rangeWrapper).children);
+    thisBooking.parts = Array.from(document.querySelector(select.containerOf.rangeSlider).children);
     console.log('thisBooking.PARTS', thisBooking.parts);
 
+
+    const dateTable = Object.keys(thisBooking.booked);
+    console.log('KLUCZE 1', dateTable);
+
+    const hourTable = Object.keys(thisBooking.booked[thisBooking.date]);
+    console.log('KLUCZE 2', hourTable);
+
+    console.log('YYY', thisBooking.booked);
+
     for (let part of thisBooking.parts) {
-      const partClass = part.getAttribute('class');
-      const partNumber = partClass.replace('half range-', '');
-      // console.log('PART NUMBER', partNumber);
-    }
-
-    thisBooking.minDate = new Date();
-    thisBooking.maxDate = utils.addDays(thisBooking.minDate, settings.datePicker.maxDaysInFuture);
-
-    console.log('MIN DATE', thisBooking.minDate);
-    console.log('MAX DATE', thisBooking.maxDate);
-
-    /* for (let i = thisBooking.minDate; i < thisBooking.maxDate; i = i = utils.addDays(i, 1)) { // iteruje po kazdej dacie z dostepnego zakresu
-      console.log(i);
-      console.log(utils.addDays(i, 1))
-      console.log(utils.dateToStr(i));
-      for (let j = 12; j < 24; j = j + 0.5) {
-        if(typeof thisBooking.booked[thisBooking.date][thisBooking.hour][table] !== 'undefined') {
-          console.log('sa zajete stoliki');
+      for (let oneDay of dateTable) {
+        for (let oneHalf of hourTable){
+          console.log('ZZZZZZZ', thisBooking.booked[oneDay][oneHalf].length);
+          if (part.getAttribute('data-tag') == oneHalf && thisBooking.booked[oneDay][oneHalf].length == 1) {
+            part.classList.add(classNames.rangeSlider.oneFree);
+          } else if (part.getAttribute('data-tag') == oneHalf && thisBooking.booked[oneDay][oneHalf].length > 1) {
+            part.classList.add(classNames.rangeSlider.allOccupied);
+          } else part.classList.add(classNames.rangeSlider.allFree);
+        }
       }
-    } */
-
+    }
   }
 }

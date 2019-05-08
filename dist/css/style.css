@@ -703,14 +703,6 @@ input.error, select.error {
   height: 12px;
 }
 
-.rangeSlider.allOccupied {
-  background: #e55039;
-}
-
-.rangeSlider.allFree {
-  background: #78e08f;
-}
-
 .rangeSlider__handle {
   box-shadow: none;
   border: 0;
@@ -746,8 +738,19 @@ input.error, select.error {
 .half {
   height: 12px;
   width: 12.58px;
-  background-color: red;
   display: inline-block;
+}
+
+.allOccupied {
+  background-color: #e55039;
+}
+
+.allFree {
+  background-color: #78e08f;
+}
+
+.oneFree {
+  background-color: #f6b93b;
 }
 
 .flatpickr-day.disabled {

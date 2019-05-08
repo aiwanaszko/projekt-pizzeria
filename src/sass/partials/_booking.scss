@@ -63,14 +63,6 @@
   box-shadow: none;
   height: $base-size;
 
-  &.allOccupied {
-    background: $color-danger;
-  }
-
-  &.allFree {
-    background: $color-success;
-  }
-
   &__handle {
     box-shadow: none;
     border: 0;
@@ -109,9 +101,21 @@
 .half {
   height: 12px;
   width: 12.58px;
-  background-color: red;
   display: inline-block;
 }
+
+.allOccupied {
+  background-color: $color-danger;
+}
+
+.allFree {
+  background-color: $color-success;
+}
+
+.oneFree {
+  background-color: $color-warning;
+}
+
 
 .flatpickr-day {
   &.disabled {
