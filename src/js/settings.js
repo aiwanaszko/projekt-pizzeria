@@ -14,6 +14,7 @@ export const select = {
     orderLink: '.orderLink',
     bookingLink: '.bookingLink',
     rangeSlider: '.rangeSlider',
+    rangeWrapper: '.main-range',
   },
   all: {
     menuProducts: '#product-list > .product',
@@ -101,6 +102,7 @@ export const classNames = {
     allOccupied: 'allOccupied',
     oneFree: 'oneFree',
     allFree: 'allFree',
+    half: 'half',
   }
   // CODE ADDED END
 };

@@ -140,8 +140,6 @@ export class Booking{
         console.log('parsedResponse', parsedResponse);
       });
 
-    console.log('thisBooking.booked', thisBooking.booked);
-
   }
 
 
@@ -241,18 +239,46 @@ export class Booking{
   colorSlider(date, duration, table, hour){
     const thisBooking = this;
 
-    thisBooking.rangeSliderWrapper = document.querySelector(select.containerOf.rangeSlider);
-    console.log('RANGE SLIDER', thisBooking.rangeSliderWrapper);
+    //thisBooking.rangeSliderWrapper = document.querySelector(select.containerOf.rangeSlider);
+    //console.log('RANGE SLIDER', thisBooking.rangeSliderWrapper);
 
-    // thisBooking.booked[date] = thisBooking.booked[date] || {};
+    console.log('ODWOLANIE', thisBooking.booked);
 
-    // for (let i = thisBooking.minDate; i < thisBooking.maxDate; i = utils.addDays(i, 1)) {
+    let rangeSliderWrapper = document.querySelector(select.containerOf.rangeSlider);
+    let rangeContainer = document.createElement('div');
+    rangeContainer.classList.add('main-range');
+    rangeSliderWrapper.appendChild(rangeContainer);
 
-    for (let i = 0; i < duration; i = i + 0.5) {
-      if(typeof thisBooking.booked[date][utils.hourToNumber(hour) + i][table] !== 'undefined') {
-        thisBooking.rangeSliderWrapper.classList.add(classNames.rangeSlider.allOccupied);
-      } else thisBooking.rangeSliderWrapper.classList.add(classNames.rangeSlider.allFree);
+    for (let i = 12; i < 24; i = i + 0.5) {
+      let topLayer = document.createElement('div');
+      topLayer.classList.add('half', 'range-' + i);
+      rangeContainer.appendChild(topLayer);
     }
-  }
 
+    thisBooking.parts = Array.from(document.querySelector(select.containerOf.rangeWrapper).children);
+    console.log('thisBooking.PARTS', thisBooking.parts);
+
+    for (let part of thisBooking.parts) {
+      const partClass = part.getAttribute('class');
+      const partNumber = partClass.replace('half range-', '');
+      // console.log('PART NUMBER', partNumber);
+    }
+
+    thisBooking.minDate = new Date();
+    thisBooking.maxDate = utils.addDays(thisBooking.minDate, settings.datePicker.maxDaysInFuture);
+
+    console.log('MIN DATE', thisBooking.minDate);
+    console.log('MAX DATE', thisBooking.maxDate);
+
+    /* for (let i = thisBooking.minDate; i < thisBooking.maxDate; i = i = utils.addDays(i, 1)) { // iteruje po kazdej dacie z dostepnego zakresu
+      console.log(i);
+      console.log(utils.addDays(i, 1))
+      console.log(utils.dateToStr(i));
+      for (let j = 12; j < 24; j = j + 0.5) {
+        if(typeof thisBooking.booked[thisBooking.date][thisBooking.hour][table] !== 'undefined') {
+          console.log('sa zajete stoliki');
+      }
+    } */
+
+  }
 }

@@ -98,6 +98,21 @@
   }
 }
 
+/* .colors {
+  width: 302px;
+  height: 12px;
+  background: red;
+  position: absolute;
+  border-radius: $radius;
+} */
+
+.half {
+  height: 12px;
+  width: 12.58px;
+  background-color: red;
+  display: inline-block;
+}
+
 .flatpickr-day {
   &.disabled {
     color: lighten($color-dark, 60%);
