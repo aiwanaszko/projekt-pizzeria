@@ -24,6 +24,7 @@
   padding: 10px;
 }
 
+
 .top-img {
   display: flex;
   justify-content: space-between;
@@ -38,6 +39,10 @@
   border-radius: $radius;
 }
 
+.col-6 {
+  overlay: hidden;
+}
+
 .bw-card {
   height: 100px;
 }
@@ -49,38 +54,20 @@
 .card-body p {
   margin-top: 90px;
   position: relative;
-  color: $color-main;
-  overflow: hidden;
+  color: $color-light;
+  transition: 1s ease;
 }
 
 .bw-card:hover .card-body > p {
   margin-top: 0;
   margin-bottom: 130px;
   color: $color-light;
-  transition: 1s ease;
 }
 
 .bw-card a {
   text-decoration: none;
 }
 
-/* .bw-card:hover .card-body > h2 {
-  margin-top: 10px;
-} */
-
-
-/* .bw-card:hover .card-body > p {
-  margin-top: 0;
-  transition: 1s;
-}
-
-.bw-card:hover .card-body > h2 {
-  padding-top: 0;
-  transition: 1s;
-  position: relative;
-}
-
-*/
 
 h2, h5 {
   text-transform: uppercase;
@@ -104,14 +91,14 @@ h5 {
   border-radius: 50%;
   width: 8px;
   height: 8px;
+  background-color: lighten($color-dark, 70%);
 }
 
-/* ol.carousel-indicators li,  {
-  background: $color-dark;
-  opacity: 0.5;
-  margin-left: 10px;
-  margin-top: 50px;
-} */
+.carousel-indicators {
+  position: relative;
+  top: 200px;
+}
+
 
 ol.carousel-indicators li.active {
   background: $color-dark;
@@ -154,49 +141,48 @@ ol.carousel-indicators li.active {
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 0;
-  right: 20%;
-  height: 100%;
-  width: 100%;
-  opacity: 0;
-  transition: .1s ease;
-  background-color: $color-dark;
+  left: 5px;
+  right: 0;
+  height: inherit;
+  width: inherit;
+  border-radius: inherit;
+  transition: 0.5s ease;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.fas-gallery {
+  color: rgba(0, 0, 0, 0);
+  font-size: 30px;
+  padding: 5px;
+  position: relative;
+  top: 60px;
+  left: 40px;
 }
 
 .photo-container:hover .overlay {
-  opacity: 0.5;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: 1s ease;
 }
 
-.container:hover .fas {
-  opacity: 1;
-  z-index: 10;
-}
+.photo-container:hover .fas-gallery {
+  color: rgba(255, 255, 255, 1);
+  transition: 1s ease;
 
-.fas {
-  color: $color-light;
-  font-size: 30px;
-  padding: 5px;
-  opacity: 0;
-}
-
-.fas:hover{
-  color: $color-main;
-  opacity: 1;
-  cursor: pointer;
-  z-index: 2;
-}
-
-
-.card-body {
-  z-index: 2;
+  &.fas-gallery:hover {
+    color: rgba(255, 107, 107, 1);
+    cursor: pointer;
+  }
 }
 
 .card {
   border: none;
 }
 
-
 .ig {
   color: $color-main;
   text-decoration: underline;
+}
+
+.ig:hover {
+  color: $color-main;
 }

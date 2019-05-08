@@ -13,6 +13,7 @@ export class Booking{
     thisBooking.render(document.querySelector(select.containerOf.booking));
     thisBooking.initWidgets();
     thisBooking.getData();
+    thisBooking.colorSlider();
   }
 
   render() {
@@ -43,6 +44,7 @@ export class Booking{
     thisBooking.dom.address = thisBooking.dom.wrapper.querySelector(select.booking.address);
 
     thisBooking.dom.phone = thisBooking.dom.wrapper.querySelector(select.booking.phone);
+
   }
 
   initWidgets() {
@@ -234,6 +236,23 @@ export class Booking{
       }
     }
 
+  }
+
+  colorSlider(date, duration, table, hour){
+    const thisBooking = this;
+
+    thisBooking.rangeSliderWrapper = document.querySelector(select.containerOf.rangeSlider);
+    console.log('RANGE SLIDER', thisBooking.rangeSliderWrapper);
+
+    // thisBooking.booked[date] = thisBooking.booked[date] || {};
+
+    // for (let i = thisBooking.minDate; i < thisBooking.maxDate; i = utils.addDays(i, 1)) {
+
+    for (let i = 0; i < duration; i = i + 0.5) {
+      if(typeof thisBooking.booked[date][utils.hourToNumber(hour) + i][table] !== 'undefined') {
+        thisBooking.rangeSliderWrapper.classList.add(classNames.rangeSlider.allOccupied);
+      } else thisBooking.rangeSliderWrapper.classList.add(classNames.rangeSlider.allFree);
+    }
   }
 
 }

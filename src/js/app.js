@@ -53,7 +53,7 @@ const app = {
 
     // poczatek kodu do poprawienia
 
-    thisApp.orderLink = document.querySelector(select.containerOf.orderLink);
+    /* thisApp.orderLink = document.querySelector(select.containerOf.orderLink);
     thisApp.bookingLink = document.querySelector(select.containerOf.bookingLink);
 
 
@@ -64,12 +64,11 @@ const app = {
         const clickedElement = this;
         event.preventDefault();
 
-        /*TODO: get page id from href */
+
         const href = clickedElement.getAttribute('href');
 
         const pageId = href.replace('#', '');
 
-        /*TODO: activate page*/
         if (page.getAttribute('id') == 'order') {
           thisApp.activatePage(pageId);
         }
@@ -84,23 +83,18 @@ const app = {
         const clickedElement = this;
         event.preventDefault();
 
-        /* get page id from href */
         const href = clickedElement.getAttribute('href');
         console.log('HREF', href);
 
         const pageId = href.replace('#', '');
         console.log('pageId', pageId);
 
-        /* activate page */
         if (page.getAttribute('id') == 'booking') {
           thisApp.activatePage(pageId);
         }
       }
-    });
-
-    /* thisApp.bookingLink.addEventListener('click', function(){
-
     }); */
+
 
     // koniec kodu do poprawienia
   },

@@ -13,6 +13,7 @@ export const select = {
     booking: '.booking-wrapper',
     orderLink: '.orderLink',
     bookingLink: '.bookingLink',
+    rangeSlider: '.rangeSlider',
   },
   all: {
     menuProducts: '#product-list > .product',
@@ -71,7 +72,7 @@ export const select = {
     address: '[name="address"]',
   },
   nav: {
-    links: '.main-nav a',
+    links: '.subpages-links',
   },
   // CODE ADDED END
 };
@@ -96,6 +97,11 @@ export const classNames = {
   pages: {
     active: 'active',
   },
+  rangeSlider: {
+    allOccupied: 'allOccupied',
+    oneFree: 'oneFree',
+    allFree: 'allFree',
+  }
   // CODE ADDED END
 };
 
