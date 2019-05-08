@@ -244,14 +244,18 @@ export class Booking{
     let rangeSliderWrapper = document.querySelector(select.containerOf.rangeSlider);
     console.log('RANGE SLIDER', rangeSliderWrapper);
 
+    let rangeContainer = document.createElement('div');
+    rangeContainer.classList.add('main-range');
+    rangeSliderWrapper.appendChild(rangeContainer);
+
     for (let i = 12; i < 24; i = i + 0.5) {
       let colorLayer = document.createElement('div');
       colorLayer.classList.add('half');
       colorLayer.setAttribute('data-tag', i);
-      rangeSliderWrapper.appendChild(colorLayer);
+      rangeContainer.appendChild(colorLayer);
     }
 
-    thisBooking.parts = Array.from(document.querySelector(select.containerOf.rangeSlider).children);
+    thisBooking.parts = Array.from(document.querySelector(select.containerOf.rangeWrapper).children);
     console.log('thisBooking.PARTS', thisBooking.parts);
 
 
