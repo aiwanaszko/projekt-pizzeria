@@ -78,6 +78,7 @@
       height: ($base-size * 2);
       top: -6px;
       background: $color-dark;
+      z-index: 2;
     }
 
   }
@@ -98,6 +99,15 @@
   border-radius: $radius;
 } */
 
+.main-range {
+  width: 302px;
+  height: 12px;
+  position: relative;
+  bottom: 5px;
+  z-index: 1;
+  border-radius: $radius;
+}
+
 .half {
   height: 12px;
   width: 12.58px;
@@ -115,7 +125,6 @@
 .oneFree {
   background-color: $color-warning;
 }
-
 
 .flatpickr-day {
   &.disabled {

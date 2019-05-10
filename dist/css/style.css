@@ -719,6 +719,7 @@ input.error, select.error {
   height: 24px;
   top: -6px;
   background: #333;
+  z-index: 2;
 }
 
 .rangeSlider__fill {
@@ -735,6 +736,15 @@ input.error, select.error {
   position: absolute;
   border-radius: $radius;
 } */
+.main-range {
+  width: 302px;
+  height: 12px;
+  position: relative;
+  bottom: 5px;
+  z-index: 1;
+  border-radius: 4px;
+}
+
 .half {
   height: 12px;
   width: 12.58px;

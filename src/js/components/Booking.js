@@ -76,7 +76,7 @@ export class Booking{
     for (let singleTable of thisBooking.dom.tables) {
       let tableNumber = parseInt(singleTable.getAttribute(settings.booking.tableIdAttribute));
 
-      if (thisBooking.booked[thisBooking.date] !== 'undefined' && thisBooking.booked[thisBooking.date][thisBooking.hour] !== 'undefined' && thisBooking.booked[thisBooking.date][thisBooking.hour].includes(tableNumber)) {
+      if (typeof thisBooking.booked[thisBooking.date] !== 'undefined' && typeof thisBooking.booked[thisBooking.date][thisBooking.hour] !== 'undefined' && thisBooking.booked[thisBooking.date][thisBooking.hour].includes(tableNumber)) {
         singleTable.classList.add(classNames.booking.tableBooked);
       } else singleTable.classList.remove(classNames.booking.tableBooked);
     }
@@ -260,22 +260,23 @@ export class Booking{
 
 
     const dateTable = Object.keys(thisBooking.booked);
-    console.log('KLUCZE 1', dateTable);
+    // console.log('KLUCZE 1', dateTable);
 
     const hourTable = Object.keys(thisBooking.booked[thisBooking.date]);
-    console.log('KLUCZE 2', hourTable);
+    // console.log('KLUCZE 2', hourTable);
+    thisBooking.date = thisBooking.datePicker.value;
+    //console.log('DATA', thisBooking.datePicker.value);
 
-    console.log('YYY', thisBooking.booked);
 
     for (let part of thisBooking.parts) {
-      for (let oneDay of dateTable) {
-        for (let oneHalf of hourTable){
-          console.log('ZZZZZZZ', thisBooking.booked[oneDay][oneHalf].length);
-          if (part.getAttribute('data-tag') == oneHalf && thisBooking.booked[oneDay][oneHalf].length == 1) {
-            part.classList.add(classNames.rangeSlider.oneFree);
-          } else if (part.getAttribute('data-tag') == oneHalf && thisBooking.booked[oneDay][oneHalf].length > 1) {
-            part.classList.add(classNames.rangeSlider.allOccupied);
-          } else part.classList.add(classNames.rangeSlider.allFree);
+      const partNumber = part.getAttribute('data-tag');
+      for (let oneHalf of hourTable){
+        if (partNumber == oneHalf && thisBooking.booked[thisBooking.date][oneHalf].length == 3) {
+          part.classList.add(classNames.rangeSlider.allOccupied);
+        } else if (partNumber == oneHalf && thisBooking.booked[thisBooking.date][oneHalf].length == 2) {
+          part.classList.add(classNames.rangeSlider.oneFree);
+        } else if (partNumber == oneHalf && (thisBooking.booked[thisBooking.date][oneHalf].length == 1 || typeof thisBooking.booked[thisBooking.date][oneHalf] == undefined)) {
+          part.classList.add(classNames.rangeSlider.allFree);
         }
       }
     }
