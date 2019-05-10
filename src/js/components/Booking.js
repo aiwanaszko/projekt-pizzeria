@@ -100,6 +100,10 @@ export class Booking{
         }
       });
     }
+
+    thisBooking.dom.datePicker.addEventListener('updated', function() {
+      thisBooking.colorSlider(thisBooking.date);
+    });
   }
 
   sendBooking() {
@@ -238,11 +242,12 @@ export class Booking{
 
   }
 
-  colorSlider(date, duration, table, hour){
+  colorSlider(date){
     const thisBooking = this;
 
+
     let rangeSliderWrapper = document.querySelector(select.containerOf.rangeSlider);
-    console.log('RANGE SLIDER', rangeSliderWrapper);
+    //console.log('RANGE SLIDER', rangeSliderWrapper);
 
     let rangeContainer = document.createElement('div');
     rangeContainer.classList.add('main-range');
@@ -256,7 +261,7 @@ export class Booking{
     }
 
     thisBooking.parts = Array.from(document.querySelector(select.containerOf.rangeWrapper).children);
-    console.log('thisBooking.PARTS', thisBooking.parts);
+    //console.log('thisBooking.PARTS', thisBooking.parts);
 
 
     const dateTable = Object.keys(thisBooking.booked);
@@ -266,7 +271,6 @@ export class Booking{
     // console.log('KLUCZE 2', hourTable);
     thisBooking.date = thisBooking.datePicker.value;
     //console.log('DATA', thisBooking.datePicker.value);
-
 
     for (let part of thisBooking.parts) {
       const partNumber = part.getAttribute('data-tag');
