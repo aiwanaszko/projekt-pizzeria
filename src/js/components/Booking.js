@@ -261,7 +261,7 @@ export class Booking{
     }
 
     thisBooking.parts = Array.from(document.querySelector(select.containerOf.rangeWrapper).children);
-    //console.log('thisBooking.PARTS', thisBooking.parts);
+    console.log('thisBooking.PARTS', thisBooking.parts);
 
 
     const dateTable = Object.keys(thisBooking.booked);
