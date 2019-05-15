@@ -263,23 +263,20 @@ export class Booking{
     thisBooking.parts = Array.from(document.querySelector(select.containerOf.rangeWrapper).children);
     console.log('thisBooking.PARTS', thisBooking.parts);
 
-
-    const dateTable = Object.keys(thisBooking.booked);
-    // console.log('KLUCZE 1', dateTable);
-
-    const hourTable = Object.keys(thisBooking.booked[thisBooking.date]);
-    // console.log('KLUCZE 2', hourTable);
     thisBooking.date = thisBooking.datePicker.value;
-    //console.log('DATA', thisBooking.datePicker.value);
 
     for (let part of thisBooking.parts) {
+      part.classList.remove(classNames.rangeSlider.allOccupied, classNames.rangeSlider.oneFree, classNames.rangeSlider.allFree);
       const partNumber = part.getAttribute('data-tag');
-      for (let oneHalf of hourTable){
-        if (partNumber == oneHalf && thisBooking.booked[thisBooking.date][oneHalf].length == 3) {
+      for (let i = 12; i < 24; i = i + 0.5) {
+        // console.log('XXXX', i, thisBooking.date, thisBooking.booked[thisBooking.date][i], thisBooking.booked[thisBooking.date][i].length);
+        if (partNumber == i && (typeof thisBooking.booked[thisBooking.date][i] == 'undefined')) {
+          part.classList.add(classNames.rangeSlider.allFree);
+        } else if (partNumber == i && thisBooking.booked[thisBooking.date][i].length == 3) {
           part.classList.add(classNames.rangeSlider.allOccupied);
-        } else if (partNumber == oneHalf && thisBooking.booked[thisBooking.date][oneHalf].length == 2) {
+        } else if (partNumber == i && thisBooking.booked[thisBooking.date][i].length == 2) {
           part.classList.add(classNames.rangeSlider.oneFree);
-        } else if (partNumber == oneHalf && (thisBooking.booked[thisBooking.date][oneHalf].length == 1 || typeof thisBooking.booked[thisBooking.date][oneHalf] == undefined)) {
+        } else if (partNumber == i && thisBooking.booked[thisBooking.date][i].length == 1) {
           part.classList.add(classNames.rangeSlider.allFree);
         }
       }
