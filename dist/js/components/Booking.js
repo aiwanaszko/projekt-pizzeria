@@ -261,7 +261,7 @@ export class Booking{
     }
 
     thisBooking.parts = Array.from(document.querySelector(select.containerOf.rangeWrapper).children);
-    console.log('thisBooking.PARTS', thisBooking.parts);
+    //console.log('thisBooking.PARTS', thisBooking.parts);
 
     thisBooking.date = thisBooking.datePicker.value;
 
@@ -270,14 +270,12 @@ export class Booking{
       const partNumber = part.getAttribute('data-tag');
       for (let i = 12; i < 24; i = i + 0.5) {
         // console.log('XXXX', i, thisBooking.date, thisBooking.booked[thisBooking.date][i], thisBooking.booked[thisBooking.date][i].length);
-        if (partNumber == i && (typeof thisBooking.booked[thisBooking.date][i] == 'undefined')) {
+        if (partNumber == i && (typeof thisBooking.booked[thisBooking.date][i] == 'undefined') || ((partNumber == i && thisBooking.booked[thisBooking.date][i].length == 1))) {
           part.classList.add(classNames.rangeSlider.allFree);
         } else if (partNumber == i && thisBooking.booked[thisBooking.date][i].length == 3) {
           part.classList.add(classNames.rangeSlider.allOccupied);
         } else if (partNumber == i && thisBooking.booked[thisBooking.date][i].length == 2) {
           part.classList.add(classNames.rangeSlider.oneFree);
-        } else if (partNumber == i && thisBooking.booked[thisBooking.date][i].length == 1) {
-          part.classList.add(classNames.rangeSlider.allFree);
         }
       }
     }

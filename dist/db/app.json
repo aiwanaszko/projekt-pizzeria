@@ -278,34 +278,24 @@
       ]
     },
     {
-      "date": "2019-05-15",
-      "hour": "22:00",
-      "table": 1,
-      "people": 1,
-      "duration": 2,
-      "phone": "1234",
-      "address": "sdfgf",
+      "date": "2019-05-29",
+      "hour": "18:00",
+      "table": 3,
+      "people": 2,
+      "duration": 3,
+      "phone": "2345",
+      "address": "awsdf",
       "id": 3
     },
     {
-      "date": "2019-05-15",
-      "hour": "22:30",
-      "table": 2,
-      "people": 1,
-      "duration": 1,
-      "phone": "21345",
-      "address": "asdfg",
-      "id": 4
-    },
-    {
-      "date": "2019-05-15",
-      "hour": "22:30",
+      "date": "2019-05-24",
+      "hour": "19:30",
       "table": 3,
       "people": 1,
       "duration": 1,
-      "phone": "21345",
-      "address": "sdf",
-      "id": 5
+      "phone": "34",
+      "address": "ad",
+      "id": 4
     }
   ]
 }
